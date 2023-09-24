@@ -57,32 +57,32 @@ def show_files():
 
             # формат каждого элемента file_list: [путь_до_файла, [файл_клиента, файл_диалога, файл_менеджера, файл_json] ]:
             file_path = file_list[session['transkrib_file']][0]
-            print(f'1.  {file_path = }')
+            #print(f'1.  {file_path = }')
 
             client_file = file_list[session['transkrib_file']][1][0]
             manager_file = file_list[session['transkrib_file']][1][2]
-            print(f'2.  {client_file = }')
-            print(f'3.  {manager_file = }')
+            #print(f'2.  {client_file = }')
+            #print(f'3.  {manager_file = }')
 
             client_full_file = os.path.join(file_path, client_file)
             manager_full_file = os.path.join(file_path, manager_file)
-            print(f'4.  {client_full_file = }')
-            print(f'5.  {manager_full_file = }')
+            #print(f'4.  {client_full_file = }')
+            #print(f'5.  {manager_full_file = }')
 
             client_file_context = read_file_context(client_full_file)
             manager_file_context = read_file_context(manager_full_file)
-            print(f'6.  {client_file_context = }')
-            print(f'7.  {manager_file_context = }')
+            #print(f'6.  {client_file_context = }')
+            #print(f'7.  {manager_file_context = }')
 
             client_processed_file = process_text_file(client_full_file)
             manager_processed_file = process_text_file(manager_full_file)
-            print(f'8.  {client_processed_file = }')
-            print(f'9.  {manager_processed_file = }')
+            #print(f'8.  {client_processed_file = }')
+            #print(f'9.  {manager_processed_file = }')
 
             client_record = [client_full_file, client_processed_file]
             manager_record = [manager_full_file, manager_processed_file]
-            print(f'10. {client_record = }')
-            print(f'11. {manager_record = }')
+            #print(f'10. {client_record = }')
+            #print(f'11. {manager_record = }')
             # блок для проверки правильности Ролей и дополнения датафрейма:
             # print(df_monologs)
             if request.form['action'] == 'Правильные Роли ->':
