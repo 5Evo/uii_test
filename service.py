@@ -56,7 +56,7 @@ def read_file_context(filename):
         return str(e)
 
 
-def process_text_file_old(filename):
+def process_text_file(filename):
     """
     Процессор обработки файла транскрибации:
     Удаляем временные метки, удаляем роли 'Менеджер:' и 'Клиент:'
@@ -86,15 +86,6 @@ def process_text_file_old(filename):
 
     return text
 
-
-def process_text_file(filename):
-    """
-
-    :param filename:
-    :return:
-    """
-    text = read_file_context(filename)  # Безопасно прочитали файл
-    return text
 
 
 def create_new_df():

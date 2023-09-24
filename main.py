@@ -74,8 +74,8 @@ def show_files():
             print(f'6.  {client_file_context = }')
             print(f'7.  {manager_file_context = }')
 
-            client_processed_file = process_text_file(client_file_context)
-            manager_processed_file = process_text_file(manager_file_context)
+            client_processed_file = process_text_file(client_full_file)
+            manager_processed_file = process_text_file(manager_full_file)
             print(f'8.  {client_processed_file = }')
             print(f'9.  {manager_processed_file = }')
 
