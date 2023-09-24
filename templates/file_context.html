@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>УИИ_тесты: файлы</title>
+    <style>
+        .button {
+            padding: 10px 15px;
+            font-size: 15px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px #999;
+        }
+
+        .button:hover {background-color: #808080}
+
+        .button:active {
+            background-color: #000000 ;  /* Yellow old_color: #3e8e41;*/
+            box-shadow: 0 2px #666;
+            transform: translateY(4px);
+        }
+
+        .left {
+            float: left;
+            background-color: #4CAF50; /* Green */
+        }
+
+        .right {
+            float: right;
+            background-color: #f44336; /* Red */
+        }
+        h2 {
+            margin-top: 60px; /* Add a top margin to the h2 tag */
+        }
+    </style>
+</head>
+<body>
+    {% include 'menu.html' %}
+
+    <form method="POST">
+        <input type="submit" name="action" class="button left" value="Правильные Роли ->">
+        <input type="submit" name="action" class="button right" value="Изменить Роли->">
+    </form>
+
+    <h2 align="left" >Содержимое файла ({{file_progress_bar.0 + 1}} из {{file_progress_bar.1}}):  {{file_name}}</h2>
+    <ul>
+       {{ file_context|replace("\n", "<br>")|safe }}
+    </ul>
+
+</body>
+</html>

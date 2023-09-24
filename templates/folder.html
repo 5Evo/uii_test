@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+    {% include 'menu.html' %}
+
+    <form method="POST">
+    <input type="submit" value="Next ->">
+
+    </form>
+    <h2>Содержимое папки ({{progress_bar.0}} из {{progress_bar.1}}):  {{folder_path}}</h2>
+    <ul>
+        {% for item in folder_contents %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
