@@ -1,11 +1,33 @@
 """
 Сервисные функции
 """
+import time
+from datetime import datetime
+
+import pytz
+
 from settings import BASE_DIR, COLUMNS, CSV_NAME
 import os
 import html
 import re
 import pandas as pd
+
+
+def current_time():
+    now = datetime.now()
+    yekaterinburg_tz = pytz.timezone('Asia/Yekaterinburg')
+    yekaterinburg_time = now.astimezone(yekaterinburg_tz)
+    return yekaterinburg_time.strftime('%H:%M')
+
+def query_execution_time(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        exec_time = end_time - start_time
+        print(f"Время запроса {func.__name__}: {round(exec_time, 1)} секунд")
+        return result, exec_time
+    return wrapper
 
 
 def read_dirs():
@@ -87,6 +109,13 @@ def process_text_file(filename):
     return text
 
 
+def read_csv_to_df():
+    try:
+        # Чтение DataFrame из файла
+        df = pd.read_csv(os.path.join(BASE_DIR, CSV_NAME))
+        return df
+    except  Exception as e:
+        print(f"Oшибка чтения DF: {e}")
 
 def create_new_df():
     """
@@ -104,7 +133,7 @@ def add_row_to_DF(data):
     Добавление новой строки в DataFrame. Все операции идут через файл, тк df слишком большой для передачи через сессию
     """
     # Чтение DataFrame из файла
-    df = pd.read_csv(os.path.join(BASE_DIR, CSV_NAME))
+    df = read_csv_to_df()
 
     df.loc[len(df)] = data
 
@@ -112,6 +141,7 @@ def add_row_to_DF(data):
     df.to_csv(os.path.join(BASE_DIR, CSV_NAME), index=False)
 
     #return df
+
 
 if __name__ == '__main__':
 
@@ -127,5 +157,5 @@ if __name__ == '__main__':
     file_number = 4
     file_path = os.path.join(file_list[file_number][0], file_list[file_number][1][0])
     print(f'Обработаем файл "{file_path}":')
-    new_text = process_text_file_old(file_path)
+    new_text = process_text_file(file_path)
     print(new_text)
